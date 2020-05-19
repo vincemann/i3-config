@@ -105,7 +105,6 @@ set $ws8 "8: docs"
 set $basicTerminalTitle basicTerminal
 set $startFileExplorer "i3Dolphin"
 set $startVms startVms.sh
-set $vmsFilePath vms
 set $changeTerminalTitle changeTerminalTitle.sh
 
 # switch to workspace
@@ -224,7 +223,7 @@ bindsym $mod+u move workspace to output above
 
 #autostart
 exec virtualbox
-exec $startVms $vmsFilePath
+exec $startVms
 exec ubuntuStart
 exec idea
 exec gnome-terminal -x sh -c '$changeTerminalTitle $basicTerminalTitle; exec bash'
