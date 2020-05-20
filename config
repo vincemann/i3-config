@@ -103,9 +103,9 @@ set $ws8 "8: docs"
 
 #VARIABLES
 set $basicTerminalTitle basicTerminal
-set $startFileExplorer "i3Dolphin"
-set $startVms startVms.sh
-set $changeTerminalTitle changeTerminalTitle.sh
+set $startFileExplorer ~/.config/i3/bin/i3Dolphin
+set $startVms ~/.config/i3/bin/startVms.sh
+set $changeTerminalTitle ~/.config/i3/bin/changeTerminalTitle.sh
 
 # switch to workspace
 bindsym $mod+1 workspace $ws1
@@ -186,19 +186,20 @@ bindsym XF86AudioRaiseVolume exec pactl set-sink-volume 0 +5%
 bindsym XF86AudioLowerVolume exec pactl set-sink-volume 0 -5% 
 # Sreen brightness controls
 # increase screen brightness
-bindsym XF86MonBrightnessUp exec changeBrightness.sh 0.2 
+bindsym XF86MonBrightnessUp exec ~/.config/i3/bin/changeBrightness.sh 0.2 
 # decrease screen brightness
-bindsym XF86MonBrightnessDown exec changeBrightness.sh -0.2 
+bindsym XF86MonBrightnessDown exec ~/.config/i3/bin/changeBrightness.sh -0.2 
 #########################################
 #second Screen
 exec_always screenAdjust.sh
 #bind workspaces to screens
-#code zeug auf big screen
+#code und internet zeug auf big screen
 workspace $ws2 output $secondScreen
+workspace $ws1 output $secondScreen
 #########################################
 
 #lock
-bindsym $mod+shift+a exec lockAndSuspend.sh
+bindsym $mod+shift+a exec ~/.config/i3/bin/lockAndSuspend.sh
 bindsym $mod+a exec sh -c 'VBoxManage controlvm "debian for surfing" resume'
 #copyq
 bindsym $mod+shift+h exec copyq show
