@@ -95,8 +95,9 @@ bindsym $mod+space focus mode_toggle
 set $ws1 "1: web"
 set $ws2 "2: code"
 set $ws3 "3: files"
-set $ws4 "4: terminal"
+set $ws4 "4: shell"
 set $ws5 "5: vm"
+set $ws7 "7: pass"
 set $ws6 "6: signal"
 set $ws8 "8: docs"
 
@@ -182,7 +183,6 @@ bindsym $mod+Ctrl+Down move workspace to output down
 bindsym $mod+Shift+F exec flameshotgui
 bindsym $mod+shift+a exec ~/.config/i3/bin/lockAndSuspend.sh
 bindsym $mod+a exec ~/.config/i3/bin/pause-resume-vm.sh "debian for surfing"
-bindsym $mod+u exec ~/.config/i3/bin/pause-resume-vm.sh "ubuntu"
 bindsym $mod+shift+h exec copyq show
 
 
@@ -220,6 +220,7 @@ assign [class="dolphin"] $ws3
 assign [class=".*Signal*."] $ws6
 assign [class=".*libreoffice.*"] $ws8
 assign [class=".*Libre.*"] $ws8
+assign [class=".*KeePassXC.*"] $ws7
 for_window [title=$basicTerminalTitle] move to workspace $ws4
 
 
@@ -228,7 +229,7 @@ for_window [title=$basicTerminalTitle] move to workspace $ws4
 #autostart
 exec virtualbox
 exec $startVms
-exec ubuntuStart
+exec keepassxc
 exec idea
 exec gnome-terminal -x sh -c '$changeTerminalTitle $basicTerminalTitle; exec bash'
 exec bash -c "$startFileExplorer"
