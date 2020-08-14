@@ -220,7 +220,7 @@ assign [class="dolphin"] $ws3
 assign [class=".*Signal*."] $ws6
 assign [class=".*libreoffice.*"] $ws8
 assign [class=".*Libre.*"] $ws8
-assign [class=".*KeePassXC.*"] $ws7
+assign [class=".*keepassxc.*"] $ws7
 for_window [title=$basicTerminalTitle] move to workspace $ws4
 
 
