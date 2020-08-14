@@ -106,6 +106,9 @@ set $basicTerminalTitle basicTerminal
 set $startFileExplorer ~/.config/i3/bin/i3Dolphin
 set $startVms ~/.config/i3/bin/startVms.sh
 set $changeTerminalTitle ~/.config/i3/bin/changeTerminalTitle.sh
+#xrandr -q shows you the screen names, main screen is first, second last
+set $mainScreen eDP-1
+set $bigScreen DP-1-1
 
 # switch to workspace
 bindsym $mod+1 workspace $ws1
@@ -177,6 +180,10 @@ bindsym $mod+e exec $startFileExplorer
 bindsym $mod+Ctrl+Up move workspace to output up
 bindsym $mod+Ctrl+Down move workspace to output down
 bindsym $mod+Shift+F exec flameshotgui
+bindsym $mod+shift+a exec ~/.config/i3/bin/lockAndSuspend.sh
+bindsym $mod+a exec ~/.config/i3/bin/pause-resume-vm.sh "debian for surfing"
+bindsym $mod+u exec ~/.config/i3/bin/pause-resume-vm.sh "ubuntu"
+bindsym $mod+shift+h exec copyq show
 
 
 # Pulse Audio controls
@@ -189,20 +196,17 @@ bindsym XF86AudioLowerVolume exec pactl set-sink-volume 0 -5%
 bindsym XF86MonBrightnessUp exec ~/.config/i3/bin/changeBrightness.sh 0.2 
 # decrease screen brightness
 bindsym XF86MonBrightnessDown exec ~/.config/i3/bin/changeBrightness.sh -0.2 
+
 #########################################
-#second Screen
-exec_always screenAdjust.sh
+#my ScreenConfig
+exec_always screenAdjust.sh $mainScreen $bigScreen
 #bind workspaces to screens
 #code und internet zeug auf big screen
-workspace $ws2 output $secondScreen
-workspace $ws1 output $secondScreen
+workspace $ws2 output $bigScreen
+workspace $ws1 output $bigScreen
 #########################################
 
-#lock
-bindsym $mod+shift+a exec ~/.config/i3/bin/lockAndSuspend.sh
-bindsym $mod+a exec sh -c 'VBoxManage controlvm "debian for surfing" resume'
-#copyq
-bindsym $mod+shift+h exec copyq show
+
 
 #assign applications to workspaces
 #assign debian virtual machine (only used for surfing) to web workspace
@@ -219,7 +223,6 @@ assign [class=".*Libre.*"] $ws8
 for_window [title=$basicTerminalTitle] move to workspace $ws4
 
 
-bindsym $mod+u move workspace to output above
 
 
 #autostart
@@ -230,5 +233,5 @@ exec idea
 exec gnome-terminal -x sh -c '$changeTerminalTitle $basicTerminalTitle; exec bash'
 exec bash -c "$startFileExplorer"
 exec signal-desktop
-exec libreoffice
+exec libreoffice ~/Plan.odt
 exec_always copyq
