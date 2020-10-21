@@ -107,6 +107,7 @@ set $basicTerminalTitle basicTerminal
 set $startFileExplorer ~/.config/i3/bin/i3Dolphin
 set $startVms ~/.config/i3/bin/startVms.sh
 set $changeTerminalTitle ~/.config/i3/bin/changeTerminalTitle.sh
+
 #xrandr -q shows you the screen names, main screen is first, second last
 set $mainScreen eDP-1
 set $bigScreen DP-1-1
@@ -175,6 +176,7 @@ bar {
         tray_output primary
 }
 
+
 ##################################################################################
 #myBindings
 bindsym $mod+e exec $startFileExplorer
@@ -199,7 +201,7 @@ bindsym XF86MonBrightnessDown exec ~/.config/i3/bin/changeBrightness.sh -0.2
 
 #########################################
 #my ScreenConfig
-exec_always screenAdjust.sh $mainScreen $bigScreen
+exec_always screenAdjust.sh
 #bind workspaces to screens
 #code und internet zeug auf big screen
 workspace $ws2 output $bigScreen
@@ -226,6 +228,9 @@ for_window [title=$basicTerminalTitle] move to workspace $ws4
 
 
 
+
+# mount backup disk
+#exec_always bash -c "mount -U 1CC8858EC88566BC -t ntfs /media/backup-disk"
 #autostart
 exec virtualbox
 exec $startVms
@@ -236,3 +241,4 @@ exec bash -c "$startFileExplorer"
 exec signal-desktop
 exec libreoffice ~/Plan.odt
 exec_always copyq
+exec libreoffice "/home/vince/dokumente/education/dev/intelliJ/intellij Shortcuts.odt"
