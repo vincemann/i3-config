@@ -100,6 +100,7 @@ set $ws5 "5: vm"
 set $ws7 "7: pass"
 set $ws6 "6: signal"
 set $ws8 "8: docs"
+set $ws9 "9: mysql"
 
 
 #VARIABLES
@@ -179,9 +180,13 @@ bar {
 
 ##################################################################################
 #myBindings
-bindsym $mod+e exec $startFileExplorer
+
 bindsym $mod+Ctrl+Up move workspace to output up
 bindsym $mod+Ctrl+Down move workspace to output down
+bindsym $mod+Ctrl+Left move workspace to output left
+bindsym $mod+Ctrl+Right move workspace to output right
+
+bindsym $mod+e exec $startFileExplorer
 bindsym $mod+Shift+F exec flameshotgui
 bindsym $mod+shift+a exec ~/.config/i3/bin/lockAndSuspend.sh
 bindsym $mod+a exec ~/.config/i3/bin/pause-resume-vm.sh "debian for surfing"
@@ -223,19 +228,19 @@ assign [class=".*Signal*."] $ws6
 assign [class=".*libreoffice.*"] $ws8
 assign [class=".*Libre.*"] $ws8
 assign [class=".*keepassxc.*"] $ws7
+assign [title=".*MySQL.*"] $ws9
 for_window [title=$basicTerminalTitle] move to workspace $ws4
 
 
 
 
 
-# mount backup disk
-#exec_always bash -c "mount -U 1CC8858EC88566BC -t ntfs /media/backup-disk"
 #autostart
 exec virtualbox
 exec $startVms
 exec keepassxc
 exec idea
+exec mysql-workbench
 exec gnome-terminal -x sh -c '$changeTerminalTitle $basicTerminalTitle; exec bash'
 exec bash -c "$startFileExplorer"
 exec signal-desktop
